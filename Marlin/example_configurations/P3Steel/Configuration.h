@@ -75,7 +75,7 @@ Here are some standard links for getting your machine calibrated:
 
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
-#define CUSTOM_MACHINE_NAME "HAL 9000"
+#define CUSTOM_MACHINE_NAME "HAL 9000"	// theangi
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -333,7 +333,7 @@ Here are some standard links for getting your machine calibrated:
 // Mechanical endstop with COM to ground and NC to Signal uses "false" here (most common setup).
 const bool X_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
 const bool Y_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
-const bool Z_MIN_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
+const bool Z_MIN_ENDSTOP_INVERTING = false; // set to true to invert the logic of the endstop. // theangi
 const bool X_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
 const bool Y_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
 const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of the endstop.
@@ -351,7 +351,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 // :{0:'Low',1:'High'}
 #define X_ENABLE_ON 0
 #define Y_ENABLE_ON 0
-#define Z_ENABLE_ON 1 // theangi: This means usually is trigghered! (laser probe works different than normal endstops)
+#define Z_ENABLE_ON 0 // theangi
 #define E_ENABLE_ON 0 // For all extruders
 
 // Disables axis when it's not being used.
@@ -395,11 +395,11 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 // @section machine
 
 // Travel limits after homing (units are in mm)
-#define X_MIN_POS -20
-#define Y_MIN_POS -20
+#define X_MIN_POS -20	//theangi
+#define Y_MIN_POS -20	//theangi
 #define Z_MIN_POS 0
-#define X_MAX_POS 168
-#define Y_MAX_POS 142
+#define X_MAX_POS 168	//theangi
+#define Y_MAX_POS 142	//theangi
 #define Z_MAX_POS 150
 
 //===========================================================================
@@ -419,7 +419,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 //=========================== Manual Bed Leveling ===========================
 //===========================================================================
 
-#define MANUAL_BED_LEVELING  // Add display menu option for bed leveling.
+//#define MANUAL_BED_LEVELING  // Add display menu option for bed leveling. //theangi
 //#define MESH_BED_LEVELING    // Enable mesh bed leveling.
 
 #if ENABLED(MANUAL_BED_LEVELING)
@@ -442,7 +442,7 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 
 // @section bedlevel
 
-//#define AUTO_BED_LEVELING_FEATURE // Delete the comment to enable (remove // at the start of the line)
+#define AUTO_BED_LEVELING_FEATURE // Delete the comment to enable (remove // at the start of the line) //theangi
 //#define DEBUG_LEVELING_FEATURE
 #define Z_MIN_PROBE_REPEATABILITY_TEST  // If not commented out, Z-Probe Repeatability test will be included if Auto Bed Leveling is Enabled.
 
@@ -465,10 +465,10 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 
   #if ENABLED(AUTO_BED_LEVELING_GRID)
 
-    #define LEFT_PROBE_BED_POSITION 15
-    #define RIGHT_PROBE_BED_POSITION 170
-    #define FRONT_PROBE_BED_POSITION 20
-    #define BACK_PROBE_BED_POSITION 170
+    #define LEFT_PROBE_BED_POSITION 20			//theangi
+    #define RIGHT_PROBE_BED_POSITION 160		//theangi
+    #define FRONT_PROBE_BED_POSITION 30			//theangi
+    #define BACK_PROBE_BED_POSITION 110			//theangi
 
     #define MIN_PROBE_EDGE 10 // The Z probe minimum square sides can be no smaller than this.
 
@@ -491,11 +491,11 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 
   // Offsets to the Z probe relative to the nozzle tip.
   // X and Y offsets must be integers.
-  #define X_PROBE_OFFSET_FROM_EXTRUDER -25     // Z probe to nozzle X offset: -left  +right
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER -29     // Z probe to nozzle Y offset: -front +behind
-  #define Z_PROBE_OFFSET_FROM_EXTRUDER -12.35  // Z probe to nozzle Z offset: -below (always!)
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 10     // Z probe to nozzle X offset: -left  +right 			//theangi
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER -30     // Z probe to nozzle Y offset: -front +behind			//theangi
+  #define Z_PROBE_OFFSET_FROM_EXTRUDER -0.45  // Z probe to nozzle Z offset: -below (always!)			//theangi
 
-  #define Z_RAISE_BEFORE_HOMING 4       // (in mm) Raise Z axis before homing (G28) for Z probe clearance.
+  #define Z_RAISE_BEFORE_HOMING 3       // (in mm) Raise Z axis before homing (G28) for Z probe clearance.	//theangi
                                         // Be sure you have this distance over your Z_MAX_POS in case.
 
   #define XY_TRAVEL_SPEED 8000         // X and Y axis travel speed between probes, in mm/min.
@@ -573,8 +573,8 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
 #if ENABLED(MANUAL_HOME_POSITIONS)
   //#define MANUAL_X_HOME_POS -20
   //#define MANUAL_Y_HOME_POS -18
-  #define MANUAL_X_HOME_POS -93
-  #define MANUAL_Y_HOME_POS -136
+  #define MANUAL_X_HOME_POS 0
+  #define MANUAL_Y_HOME_POS -40
   #define MANUAL_Z_HOME_POS 0
   //#define MANUAL_Z_HOME_POS 402 // For delta: Distance between nozzle and print surface after homing.
 #endif
