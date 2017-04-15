@@ -492,15 +492,16 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
-//#define DEFAULT_AXIS_STEPS_PER_UNIT     {160,169.03,8000,1280.5}    //theangi
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {160,169.03,8000,1280.5}    //theangi
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+//#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 300, 300, 3, 25 }
 
 /**
  * Default Max Acceleration (change/s) change = mm/s
@@ -585,6 +586,7 @@
 //    |           |
 //    O-- FRONT --+
 //  (0,0)
+// theangi: probabile da cambiare!
 #define X_PROBE_OFFSET_FROM_EXTRUDER 10  // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER 10  // Y offset: -front +behind [the nozzle]
 #define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
@@ -724,12 +726,12 @@
 // @section machine
 
 // Travel limits after homing (units are in mm)
-#define X_MIN_POS -20     //theangi
-#define Y_MIN_POS -20     //theangi
-#define Z_MIN_POS 0
-#define X_MAX_POS 168     //theangi
-#define Y_MAX_POS 142     //theangi
-#define Z_MAX_POS 150     //theangi
+#define X_MIN_POS 0        //theangi
+#define Y_MIN_POS -20      //theangi
+#define Z_MIN_POS -3       //theangi
+#define X_MAX_POS 160      //theangi
+#define Y_MAX_POS 182      //theangi
+#define Z_MAX_POS 150      //theangi
 
 //===========================================================================
 //========================= Filament Runout Sensor ==========================
@@ -815,10 +817,10 @@
   #define ABL_GRID_POINTS_Y ABL_GRID_POINTS_X
 
   // Set the boundaries for probing (where the probe can reach).
-  #define LEFT_PROBE_BED_POSITION 15  
-  #define RIGHT_PROBE_BED_POSITION 100    //theangi
-  #define FRONT_PROBE_BED_POSITION 20
-  #define BACK_PROBE_BED_POSITION 100     //theangi     
+  #define LEFT_PROBE_BED_POSITION 25      //theangi
+  #define RIGHT_PROBE_BED_POSITION 160    //theangi
+  #define FRONT_PROBE_BED_POSITION 30     //theangi
+  #define BACK_PROBE_BED_POSITION 110     //theangi     
 
   // The Z probe minimum outer margin (to validate G29 parameters).
   #define MIN_PROBE_EDGE 10
@@ -868,13 +870,13 @@
 // @section homing
 
 // The center of the bed is at (X=0, Y=0)
-//#define BED_CENTER_AT_0_0
+#define BED_CENTER_AT_0_0
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-//#define MANUAL_X_HOME_POS 0
-//#define MANUAL_Y_HOME_POS 0
-//#define MANUAL_Z_HOME_POS 0 // Distance between the nozzle to printbed after homing
+#define MANUAL_X_HOME_POS -20   //theangi: how much distant from (0,0) is the X when homing only the X
+#define MANUAL_Y_HOME_POS -60   //theangi: how much distant from (0,0) is the Y when homing only the Y
+#define MANUAL_Z_HOME_POS 0 // Distance between the nozzle to printbed after homing
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
 //
@@ -884,7 +886,7 @@
 // - If stepper drivers time out, it will need X and Y homing again before Z homing.
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing when homing all axes (G28).
 // - Prevent Z homing when the Z probe is outside bed area.
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT ((X_MIN_POS + X_MAX_POS) / 2)    // X point for Z homing when homing all axis (G28).
