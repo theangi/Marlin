@@ -249,7 +249,7 @@
  *
  * :{ '0': "Not used", '1':"100k / 4.7k - EPCOS", '2':"200k / 4.7k - ATC Semitec 204GT-2", '3':"Mendel-parts / 4.7k", '4':"10k !! do not use for a hotend. Bad resolution at high temp. !!", '5':"100K / 4.7k - ATC Semitec 104GT-2 (Used in ParCan & J-Head)", '6':"100k / 4.7k EPCOS - Not as accurate as Table 1", '7':"100k / 4.7k Honeywell 135-104LAG-J01", '8':"100k / 4.7k 0603 SMD Vishay NTCS0603E3104FXT", '9':"100k / 4.7k GE Sensing AL03006-58.2K-97-G1", '10':"100k / 4.7k RS 198-961", '11':"100k / 4.7k beta 3950 1%", '12':"100k / 4.7k 0603 SMD Vishay NTCS0603E3104FXT (calibrated for Makibox hot bed)", '13':"100k Hisens 3950  1% up to 300°C for hotend 'Simple ONE ' & hotend 'All In ONE'", '20':"PT100 (Ultimainboard V2.x)", '51':"100k / 1k - EPCOS", '52':"200k / 1k - ATC Semitec 204GT-2", '55':"100k / 1k - ATC Semitec 104GT-2 (Used in ParCan & J-Head)", '60':"100k Maker's Tool Works Kapton Bed Thermistor beta=3950", '66':"Dyze Design 4.7M High Temperature thermistor", '70':"the 100K thermistor found in the bq Hephestos 2", '71':"100k / 4.7k Honeywell 135-104LAF-J01", '147':"Pt100 / 4.7k", '1047':"Pt1000 / 4.7k", '110':"Pt100 / 1k (non-standard)", '1010':"Pt1000 / 1k (non standard)", '-3':"Thermocouple + MAX31855 (only for sensor 0)", '-2':"Thermocouple + MAX6675 (only for sensor 0)", '-1':"Thermocouple + AD595",'998':"Dummy 1", '999':"Dummy 2" }
  */
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 5
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -493,7 +493,7 @@
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
 //#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {160,169.03,8000,1280.5}    //theangi
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {160,169.03,800,837.5}    //theangi
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -727,10 +727,10 @@
 
 // Travel limits after homing (units are in mm)
 #define X_MIN_POS 0        //theangi
-#define Y_MIN_POS -20      //theangi
+#define Y_MIN_POS -10      //theangi
 #define Z_MIN_POS -3       //theangi
-#define X_MAX_POS 160      //theangi
-#define Y_MAX_POS 182      //theangi
+#define X_MAX_POS 190      //theangi
+#define Y_MAX_POS 190      //theangi
 #define Z_MAX_POS 150      //theangi
 
 //===========================================================================
@@ -754,8 +754,8 @@
 
 #if ENABLED(MESH_BED_LEVELING)
   #define MESH_INSET 10        // Mesh inset margin on print area
-  #define MESH_NUM_X_POINTS 3  // Don't use more than 7 points per axis, implementation limited.
-  #define MESH_NUM_Y_POINTS 3
+  #define MESH_NUM_X_POINTS 2  // Don't use more than 7 points per axis, implementation limited.
+  #define MESH_NUM_Y_POINTS 2
   #define MESH_HOME_SEARCH_Z 4  // Z after Home, bed somewhere below but above 0.0.
 
   //#define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest at origin [0,0,0]
@@ -818,7 +818,7 @@
 
   // Set the boundaries for probing (where the probe can reach).
   #define LEFT_PROBE_BED_POSITION 25      //theangi
-  #define RIGHT_PROBE_BED_POSITION 160    //theangi
+  #define RIGHT_PROBE_BED_POSITION 130    //theangi
   #define FRONT_PROBE_BED_POSITION 30     //theangi
   #define BACK_PROBE_BED_POSITION 110     //theangi     
 
@@ -874,8 +874,8 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-#define MANUAL_X_HOME_POS -20   //theangi: how much distant from (0,0) is the X when homing only the X
-#define MANUAL_Y_HOME_POS -60   //theangi: how much distant from (0,0) is the Y when homing only the Y
+#define MANUAL_X_HOME_POS 0   //theangi: how much distant from (0,0) is the X when homing only the X
+#define MANUAL_Y_HOME_POS -10   //theangi: how much distant from (0,0) is the Y when homing only the Y
 #define MANUAL_Z_HOME_POS 0 // Distance between the nozzle to printbed after homing
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
